@@ -58,7 +58,7 @@ namespace OnlineShopOne
         }
         public void PrintInfo()
         {
-            Console.WriteLine("ID: " + id + ", Title = " + title + ", Price: " + price + ", Discount = " + discount + "%, Amount: " + this.amount);
+            Console.WriteLine("Clothing ID: " + id + ", Title = " + title + ", Price: " + price + ", Discount = " + discount + "%, Amount: " + this.amount);
         }
     }
 }

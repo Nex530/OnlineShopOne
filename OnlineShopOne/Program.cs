@@ -45,8 +45,9 @@
                         int INTID = int.Parse(id) - 1;
                         pickedClothes.Add(clothes.ElementAt(INTID));
                     }
-                    orders.Add(new Order(1, inputClientId, pickedClothes, 5, 10, "Pavlova Ulica 4"));
+                    orders.Add(new Order(1, inputClientId, pickedClothes, 0, 0, "Pavlova Ulica 4"));
                     orders.ElementAt(0).PrintInfo();
+                    //orders.ElementAt(0).PrintInfo();
                 }
             }
         }

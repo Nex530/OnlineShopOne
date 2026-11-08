@@ -33,18 +33,19 @@ namespace OnlineShopOne
             {
                 if (clothing.Discount == 0)
                 {
-                    totalPrice += clothing.Price;
+                    totalPrice += clothing.Price - (clothing.Price * additionalDiscount / 100);
                 }
                 else
                 {
                     totalPrice += clothing.priceAfterDiscount();
                 }
             }
+            totalPrice += deliveryPrice;
             return totalPrice;
         }
         public void PrintInfo()
         {
-            Console.WriteLine("ID: " + id + ", ClientID: = " + clientId + ", Shipping Address: " + this.shippingAddress + ", Total Price: " + getTotalPrice());
+            Console.WriteLine("Order ID: " + id + ", ClientID: = " + clientId + ", Shipping Address: " + this.shippingAddress + ", Total Price: " + getTotalPrice());
             foreach (Clothes clothing in cartClothes)
             {
                 clothing.PrintInfo();
