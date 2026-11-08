@@ -29,7 +29,18 @@ namespace OnlineShopOne
         private double getTotalPrice()
         {
             //za domashno: da go smetna total price
-            return 0;
+            foreach (Clothes clothing in cartClothes)
+            {
+                if (clothing.Discount == 0)
+                {
+                    totalPrice += clothing.Price;
+                }
+                else
+                {
+                    totalPrice += clothing.priceAfterDiscount();
+                }
+            }
+            return totalPrice;
         }
         public void PrintInfo()
         {
