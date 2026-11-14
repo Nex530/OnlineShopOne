@@ -37,7 +37,18 @@ namespace OnlineShopOne
 
         public void PrintInfo()
         {
-            Console.WriteLine("ID: " + id + ", Name = " + name + ", Shipping Address: " +  this.shippingAddress + this.balance);
+            Console.WriteLine("ID: " + id + ", Name = " + name + ", Shipping Address: " +  this.shippingAddress + ", Balance:  "+this.balance);
+        }
+        public void addCompletedOrder(Order order)
+        {
+            CompletedOrders.Add(order);
+        }
+        public void PrintAllCompletedOrders()
+        {
+            foreach (Order item in CompletedOrders)
+            {
+                item.PrintInfo();
+            }
         }
     }
 }

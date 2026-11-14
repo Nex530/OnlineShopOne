@@ -7,9 +7,12 @@
             List<Clients> clients = new List<Clients>();
             List<Clothes> clothes = new List<Clothes>();
             List<Order> orders = new List<Order>();
+            int currentOrderIndex = 0;
 
-            Clients client1 = new Clients(1, "Adrian", "Alexandur Street 15", "0889294921", "adrian.tsivkaroski@gmail.com", "1234", 1500);
-            clients.Add(client1);
+            
+            clients.Add(new Clients(1, "Adrian", "Alexandur Street 15", "0889294921", "adrian.tsivkaroski@gmail.com", "1234", 150));
+            clients.Add(new Clients(2, "Petrov", "Petrov Ulica 17", "0989592921", "petrovPetrov@gmail.com", "Petrov", 600));
+            clients.Add(new Clients(3, "Jamal", "Alexandurov Most 16", "0881229921", "alternativ.adrian@gmail.com", "4321", 350));
 
             clothes.Add(new Clothes(1, 150, 0, 1, "Jacket"));
             clothes.Add(new Clothes(2, 60, 5, 3, "Nike T-shirt"));
@@ -45,9 +48,21 @@
                         int INTID = int.Parse(id) - 1;
                         pickedClothes.Add(clothes.ElementAt(INTID));
                     }
-                    orders.Add(new Order(1, inputClientId, pickedClothes, 0, 0, "Pavlova Ulica 4"));
-                    orders.ElementAt(0).PrintInfo();
-                    //orders.ElementAt(0).PrintInfo();
+                    orders.Add(new Order(currentOrderIndex + 1, inputClientId, pickedClothes, 5.50, 10, "Pavlova Ulica 4"));
+                    orders.ElementAt(currentOrderIndex).PrintInfo();
+
+                    Console.Write("Do you want to complete this order?: ");
+                    bool agreement = false;
+                    agreement = bool.Parse(Console.ReadLine());
+                    if (agreement)
+                    {
+                        if (orders.ElementAt(currentOrderIndex).CompletingOrder(clients.ElementAt(inputClientId - 1)))
+                        {
+                            clients.ElementAt(inputClientId - 1).PrintAllCompletedOrders();
+                            //currentOrderIndex++;
+                        }
+                       
+                    } currentOrderIndex++;
                 }
             }
         }

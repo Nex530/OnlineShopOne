@@ -29,6 +29,8 @@ namespace OnlineShopOne
         private double getTotalPrice()
         {
             //za domashno: da go smetna total price
+
+            totalPrice = 0;
             foreach (Clothes clothing in cartClothes)
             {
                 if (clothing.Discount == 0)
@@ -50,6 +52,38 @@ namespace OnlineShopOne
             {
                 clothing.PrintInfo();
             }
+        }
+        public bool CompletingOrder(Clients client)
+        {
+            if (client.Name.Count() > 1 && client.Balance - getTotalPrice() >= 0 && shippingAddress.Count() > 5 && cartClothes.Count > 0)
+            {
+                client.Balance -= getTotalPrice();
+                paymentSuccessful = true;
+                orderInfoFull = true;
+                orderComplete = true;
+                client.addCompletedOrder(this);
+                return true;
+            }
+            if (client.Name.Count() <= 1)
+            {
+                Console.WriteLine("Client name is too short.");
+            }
+            if (client.Balance - getTotalPrice() < 0)
+            {
+                Console.WriteLine("Insufficient balance.");
+            }
+            if (shippingAddress.Count() <= 5)
+            {
+                Console.WriteLine("Shipping address is too short.");
+            }
+            if (cartClothes.Count == 0)
+            {
+                Console.WriteLine("Cart is empty.");
+            }
+            // za domashno:
+            // da napravja output za VSEKI razlichen problem sus proverki za korektna informacija ot klienta, za dostatuchen balans, za adres > 5 index i za lichni produk ti v kolichkata (ako ima nishto)
+            // d
+            return false;
         }
     }
 }
